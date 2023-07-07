@@ -28,6 +28,11 @@ class SaveUser extends \Magento\Backend\App\Action
     protected $redirectFactory;
 
     /**
+     * @var \Magento\Framework\App\Cache\TypeListInterface
+     */
+    protected $cacheTypeList;
+
+    /**
      * @param \Magento\Backend\App\Action\Context                $context
      * @param \Magento\Config\Model\ResourceModel\Config         $resourceConfig
      * @param \Magento\Framework\Message\ManagerInterface        $messageManager
@@ -38,11 +43,13 @@ class SaveUser extends \Magento\Backend\App\Action
         \Magento\Config\Model\ResourceModel\Config $resourceConfig,
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Magento\Backend\Model\View\Result\RedirectFactory $redirectFactory,
+        \Magento\Framework\App\Cache\TypeListInterface $cacheTypeList
     ) {
         parent::__construct($context);
         $this->resourceConfig = $resourceConfig;
         $this->messageManager = $messageManager;
         $this->redirectFactory = $redirectFactory;
+        $this->cacheTypeList = $cacheTypeList;
     }
 
     /**
@@ -61,7 +68,9 @@ class SaveUser extends \Magento\Backend\App\Action
                 );
             }
 
+            $this->cacheTypeList->cleanType('config');
             $this->messageManager->addSuccessMessage('User info saved successfully');
+
             $resultRedirect = $this->redirectFactory->create();
             $resultRedirect->setPath('*/products/index');
             return $resultRedirect;
