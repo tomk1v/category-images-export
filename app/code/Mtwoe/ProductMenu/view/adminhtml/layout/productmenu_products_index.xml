@@ -14,7 +14,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <uiComponent name="product_menu_listing" />
+            <uiComponent name="productmenu_listing" />
         </referenceContainer>
     </body>
 </page>

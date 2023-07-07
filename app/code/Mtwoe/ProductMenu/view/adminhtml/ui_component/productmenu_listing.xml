@@ -15,8 +15,8 @@
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider"
-                  xsi:type="string">product_menu_listing.mtwoe_product_menu_listing_data_source</item>
-            <item name="deps" xsi:type="string">product_menu_listing.mtwoe_product_menu_listing_data_source</item>
+                  xsi:type="string">productmenu_listing.mtwoe_product_menu_listing_data_source</item>
+            <item name="deps" xsi:type="string">productmenu_listing.mtwoe_product_menu_listing_data_source</item>
         </item>
         <item name="spinner" xsi:type="string">mtwoe_productmenu_columns</item>
     </argument>
@@ -52,7 +52,7 @@
             <argument name="data" xsi:type="array">
                 <item name="data" xsi:type="array">
                     <item name="selectProvider"
-                          xsi:type="string">product_menu_listing.product_menu_listing.product_menu_listing.ids</item>
+                          xsi:type="string">productmenu_listing.product_menu_listing.product_menu_listing.ids</item>
                     <item name="displayArea" xsi:type="string">bottom</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
                     <item name="indexField" xsi:type="string">entity_id</item>
