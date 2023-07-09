@@ -13,11 +13,6 @@ namespace Mtwoe\ProductMenu\Controller\Adminhtml\Index;
 class Index extends \Magento\Backend\App\Action
 {
     /**
-     * User email configuration path
-     */
-    const PRODUCT_MENU_USER_EMAIL = 'mtwoe/product_menu/email';
-
-    /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $resultPageFactory;
@@ -61,13 +56,6 @@ class Index extends \Magento\Backend\App\Action
         $resultPage->setActiveMenu('Mtwoe_ProductMenu::home');
         $resultPage->getConfig()->getTitle()->prepend((__('User Installation Info')));
 
-        $userEmail = $this->scopeConfig->getValue(self::PRODUCT_MENU_USER_EMAIL, 'default', 0);
-        if ($userEmail) {
-            $resultRedirect = $this->redirectFactory->create();
-            $resultRedirect->setPath('*/products/index');
-            return $resultRedirect;
-        } else {
-            return $resultPage;
-        }
+        return $resultPage;
     }
 }
