@@ -20,6 +20,7 @@
         </item>
         <item name="spinner" xsi:type="string">mtwoe_productmenu_columns</item>
     </argument>
+
     <dataSource name="mtwoe_productmenu_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">
@@ -42,6 +43,7 @@
             </item>
         </argument>
     </dataSource>
+
     <listingToolbar name="listing_top">
         <settings>
             <sticky>true</sticky>
@@ -89,6 +91,7 @@
         </filters>
         <paging name="listing_paging" />
     </listingToolbar>
+
     <columns name="mtwoe_productmenu_columns">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">

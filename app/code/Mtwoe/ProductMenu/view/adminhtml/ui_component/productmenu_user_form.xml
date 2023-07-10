@@ -13,8 +13,8 @@
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">productmenu_user_form.mtwoe_product_menu_listing_data_source</item>
-            <item name="deps" xsi:type="string">productmenu_user_form.mtwoe_product_menu_listing_data_source</item>
+            <item name="provider" xsi:type="string">productmenu_user_form.mtwoe_product_menu_data_source</item>
+            <item name="deps" xsi:type="string">productmenu_user_form.mtwoe_product_menu_data_source</item>
         </item>
         <item name="label" xsi:type="string" translate="true">Edit Product Tab</item>
         <item name="config" xsi:type="array">
@@ -30,7 +30,8 @@
             </item>
         </item>
     </argument>
-    <dataSource name="mtwoe_product_menu_listing_data_source">
+
+    <dataSource name="mtwoe_product_menu_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
@@ -38,13 +39,14 @@
             </item>
         </argument>
         <dataProvider class="\Mtwoe\ProductMenu\Ui\DataProvider\ProductMenu\ProductDataProvider"
-                      name="mtwoe_product_menu_listing_data_source">
+                      name="mtwoe_product_menu_data_source">
             <settings>
                 <requestFieldName>entity_id</requestFieldName>
                 <primaryFieldName>entity_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
+
     <fieldset name="general">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -58,7 +60,6 @@
                     <item name="label" xsi:type="string" translate="true">Name</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">mtwoe_product_menu_listing_data_source</item>
                     <item name="dataScope" xsi:type="string">name</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
@@ -72,7 +73,6 @@
                     <item name="label" xsi:type="string" translate="true">Email</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">textarea</item>
-                    <item name="source" xsi:type="string">mtwoe_product_menu_listing_data_source</item>
                     <item name="dataScope" xsi:type="string">email</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
@@ -86,7 +86,6 @@
                     <item name="label" xsi:type="string" translate="true">Phone</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">textarea</item>
-                    <item name="source" xsi:type="string">mtwoe_product_menu_listing_data_source</item>
                     <item name="dataScope" xsi:type="string">phone</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>

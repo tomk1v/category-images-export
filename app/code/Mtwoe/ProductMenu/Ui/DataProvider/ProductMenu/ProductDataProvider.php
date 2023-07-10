@@ -18,15 +18,27 @@ class ProductDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     protected $collection;
 
     /**
-     * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
+     * @var array
+     */
+    protected $loadedData;
+
+    /**
+     * @var \Magento\CatalogInventory\Model\Stock\StockItemRepository
+     */
+    private $stockItemRepository;
+
+    /**
      * @param string                                                         $name
      * @param string                                                         $primaryFieldName
      * @param string                                                         $requestFieldName
+     * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $collectionFactory
+     * @param \Magento\CatalogInventory\Model\Stock\StockItemRepository      $stockItemRepository
      * @param array                                                          $meta
      * @param array                                                          $data
      */
     public function __construct(
-        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $collectionFactory,
+        \Magento\CatalogInventory\Model\Stock\StockItemRepository $stockItemRepository,
         $name,
         $primaryFieldName,
         $requestFieldName,
@@ -34,19 +46,30 @@ class ProductDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         array $data = []
     ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
-        $this->collection = $productCollectionFactory->create();
+        $this->stockItemRepository = $stockItemRepository;
+        $this->collection = $collectionFactory->create()->setStoreId(0);
     }
 
     /**
+     * Default data for edit page
+     *
      * @return array
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getData()
     {
-        $productsCollection = $this->collection->load();
-        $items = $productsCollection->getData();
-        return [
-            'totalRecords' => $productsCollection->getSize(),
-            'items' => $items,
-        ];
+        if (isset($this->loadedData)) {
+            return $this->loadedData;
+        }
+
+        $items = $this->collection->addAttributeToSelect('*')->getItems();
+        /*** @var \Magento\Catalog\Api\Data\ProductInterface $location */
+        foreach ($items as $item) {
+            $itemId = $item->getId();
+            $this->loadedData[$itemId] = $item->getData();
+            $this->loadedData[$itemId]['qty'] = $this->stockItemRepository->get($itemId)->getQty();
+        }
+
+        return $this->loadedData;
     }
 }

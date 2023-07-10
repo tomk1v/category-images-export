@@ -37,7 +37,7 @@
                 <item name="submit_url" path="productmenu/products/save" xsi:type="url" />
             </item>
         </argument>
-        <dataProvider class="Mtwoe\ProductMenu\Ui\DataProvider\ProductMenu\ProductEditDataProvider"
+        <dataProvider class="Mtwoe\ProductMenu\Ui\DataProvider\ProductMenu\ProductDataProvider"
                       name="mtwoe_product_menu_edit_data_source">
             <settings>
                 <requestFieldName>entity_id</requestFieldName>

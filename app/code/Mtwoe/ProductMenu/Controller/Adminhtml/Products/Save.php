@@ -23,25 +23,17 @@ class Save extends \Magento\Backend\App\Action
     protected $request;
 
     /**
-     * @var \Magento\CatalogInventory\Api\StockRegistryInterface
-     */
-    private $productStockRepository;
-
-    /**
      * @param \Magento\Backend\App\Action\Context                  $context
      * @param \Magento\Catalog\Api\ProductRepositoryInterface      $productRepository
      * @param \Magento\Framework\App\Request\Http                  $request
-     * @param \Magento\CatalogInventory\Api\StockRegistryInterface $productStockRepository
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
-        \Magento\Framework\App\Request\Http $request,
-        \Magento\CatalogInventory\Api\StockRegistryInterface $productStockRepository
+        \Magento\Framework\App\Request\Http $request
     ) {
         $this->productRepository = $productRepository;
         $this->request = $request;
-        $this->productStockRepository = $productStockRepository;
         parent::__construct($context);
     }
 
@@ -55,9 +47,9 @@ class Save extends \Magento\Backend\App\Action
         if (!empty($productData)) {
             $product = $this->productRepository->getById($productData['entity_id'], false, 0);
             $product->setName($productData['name'])->setPrice($productData['price']);
+            $product->getExtensionAttributes()->getStockItem()
+                ->setQty($productData['qty'])->setIsInStock((bool)$productData['qty']);
 
-            $stockItem = $this->productStockRepository->getStockItem($productData['entity_id']);
-            $stockItem->setQty($productData['qty']);
             try {
                 $this->productRepository->save($product);
                 $this->messageManager->addSuccessMessage(__('Product saved successfully.'));
