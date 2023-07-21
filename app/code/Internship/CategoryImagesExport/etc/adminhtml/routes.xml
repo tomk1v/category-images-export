@@ -11,6 +11,10 @@
 -->
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Internship_CategoryImagesExport" setup_version="1.0.0"/>
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="images_export" frontName="images_export">
+            <module name="Internship_CategoryImagesExport"/>
+        </route>
+    </router>
 </config>
