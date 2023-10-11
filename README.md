@@ -29,5 +29,4 @@ Time-Saving: Automating the image export process saves you valuable time, which 
 ### Enjoy your photos by path 'pub/media/your_folder_name'
 ![2023-10-11_17-29](https://github.com/tomk1v/category-images-export/assets/91790934/ee603b7c-3d87-40a2-8f26-7aa9f939bf37)
 
-
-
+The module was written for the latest version of Magento 2.4.6 ©tomk1v
