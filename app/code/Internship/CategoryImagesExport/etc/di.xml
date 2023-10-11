@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Category Images Export
+ *
+ * @category  Internship
+ * @package   Internship\CategoryImagesExport
+ * @author    Andrii Tomkiv <tomkivandrii18@gmail.com>
+ * @copyright 2023 tomk1v
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Internship\CategoryImagesExport\Model\DownloadImages">
+        <arguments>
+            <argument name="categoryRepository"
+                      xsi:type="object">Magento\Catalog\Api\CategoryRepositoryInterface</argument>
+            <argument name="productRepository"
+                      xsi:type="object">Magento\Catalog\Api\ProductRepositoryInterface</argument>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem</argument>
+        </arguments>
+    </type>
+</config>

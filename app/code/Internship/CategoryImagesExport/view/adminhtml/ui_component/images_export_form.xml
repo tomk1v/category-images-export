@@ -23,27 +23,33 @@
             <item name="namespace" xsi:type="string">internship_images_export_form</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
-        <item name="buttons" xsi:type="array">
-            <item name="export" xsi:type="array">
-                <item name="name" xsi:type="string">export</item>
-                <item name="label" xsi:type="string" translate="true">Export</item>
-                <item name="class" xsi:type="string">primary</item>
-            </item>
-        </item>
     </argument>
+
+    <settings>
+        <buttons>
+            <button name="save" class="\Internship\CategoryImagesExport\Block\Adminhtml\Index\ExportButton"/>
+        </buttons>
+        <namespace>images_export_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>images_export_form.internship_category_image_export_data_source</dep>
+        </deps>
+    </settings>
 
     <dataSource name="internship_category_image_export_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
-                <item name="submit_url" path="images_export/index/export" xsi:type="url" />
             </item>
         </argument>
+        <settings>
+            <submitUrl path="images_export/index/export"/>
+        </settings>
         <dataProvider class="\Magento\ImportExport\Ui\DataProvider\ExportFileDataProvider"
                       name="internship_category_image_export_data_source">
             <settings>
-                <requestFieldName>file_name</requestFieldName>
-                <primaryFieldName>file_name</primaryFieldName>
+                <requestFieldName>folder_name</requestFieldName>
+                <primaryFieldName>folder_name</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
@@ -52,16 +58,17 @@
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="collapsible" xsi:type="boolean">false</item>
-                <item name="label" xsi:type="string" translate="true">Export Images Information</item>
+                <item name="label" xsi:type="string" translate="true">Export</item>
             </item>
         </argument>
-        <field name="file_name">
+        <field name="folder_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string" translate="true">File Name</item>
+                    <item name="label" xsi:type="string" translate="true">Folder Name</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="dataScope" xsi:type="string">name</item>
+                    <item name="dataScope" xsi:type="string">folder_name</item>
+                    <item name="name" xsi:type="string">folder_name</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -74,9 +81,11 @@
                     <item name="label" xsi:type="string" translate="true">Category ID</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">textarea</item>
-                    <item name="dataScope" xsi:type="string">phone</item>
+                    <item name="dataScope" xsi:type="string">category_id</item>
+                    <item name="name" xsi:type="string">category_id</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-digits" xsi:type="boolean">true</item>
                     </item>
                 </item>
             </argument>
