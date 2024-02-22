@@ -3,13 +3,12 @@
 /**
  * Category Images Export
  *
- * @category  Internship
- * @package   Internship\CategoryImagesExport
- * @author    Andrii Tomkiv <tomkivandrii18@gmail.com>
- * @copyright 2023 tomk1v
+ * @category Internship
+ * @package Internship\CategoryImagesExport
+ * @author Andrii Tomkiv <tomkivandrii18@gmail.com>
+ * @copyright 2024 tomk1v
  */
 -->
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
