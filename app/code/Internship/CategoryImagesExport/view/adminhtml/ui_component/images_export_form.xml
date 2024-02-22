@@ -2,13 +2,12 @@
 /**
  * Category Images Export
  *
- * @category  Internship
- * @package   Internship\CategoryImagesExport
- * @author    Andrii Tomkiv <tomkivandrii18@gmail.com>
- * @copyright 2023 tomk1v
+ * @category Internship
+ * @package Internship\CategoryImagesExport
+ * @author Andrii Tomkiv <tomkivandrii18@gmail.com>
+ * @copyright 2024 tomk1v
  */
 -->
-
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
@@ -39,7 +38,7 @@
     <dataSource name="internship_category_image_export_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
-                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+                <item name="component" xsi:type="string">Internship_CategoryImagesExport/js/export</item>
             </item>
         </argument>
         <settings>
@@ -48,8 +47,8 @@
         <dataProvider class="\Magento\ImportExport\Ui\DataProvider\ExportFileDataProvider"
                       name="internship_category_image_export_data_source">
             <settings>
-                <requestFieldName>folder_name</requestFieldName>
-                <primaryFieldName>folder_name</primaryFieldName>
+                <requestFieldName>category_id</requestFieldName>
+                <primaryFieldName>category_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
@@ -61,31 +60,17 @@
                 <item name="label" xsi:type="string" translate="true">Export</item>
             </item>
         </argument>
-        <field name="folder_name">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string" translate="true">Folder Name</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="dataScope" xsi:type="string">folder_name</item>
-                    <item name="name" xsi:type="string">folder_name</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </field>
         <field name="category_id">
             <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">\Internship\CategoryImagesExport\Ui\Component\Listing\Column\CategoryOptions</item>
                 <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string" translate="true">Category ID</item>
+                    <item name="label" xsi:type="string" translate="true">Category</item>
                     <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="formElement" xsi:type="string">select</item>
                     <item name="dataScope" xsi:type="string">category_id</item>
                     <item name="name" xsi:type="string">category_id</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
-                        <item name="validate-digits" xsi:type="boolean">true</item>
                     </item>
                 </item>
             </argument>

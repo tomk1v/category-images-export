@@ -3,19 +3,23 @@
 /**
  * Category Images Export
  *
- * @category  Internship
- * @package   Internship\CategoryImagesExport
- * @author    Andrii Tomkiv <tomkivandrii18@gmail.com>
- * @copyright 2023 tomk1v
+ * @category Internship
+ * @package Internship\CategoryImagesExport
+ * @author Andrii Tomkiv <tomkivandrii18@gmail.com>
+ * @copyright 2024 tomk1v
  */
 -->
-
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="editor"/>
     <body>
         <referenceContainer name="content">
             <uiComponent name="images_export_form"/>
+        </referenceContainer>
+
+        <referenceContainer name="js">
+            <block class="Magento\Backend\Block\Template" name="initialize_export_url"
+                   template="Internship_CategoryImagesExport::initializeExportUrl.phtml"/>
         </referenceContainer>
     </body>
 </page>

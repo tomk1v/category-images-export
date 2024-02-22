@@ -1,0 +1,21 @@
+<?php
+/**
+ * Category Images Export
+ *
+ * @category Internship
+ * @package Internship\CategoryImagesExport
+ * @author Andrii Tomkiv <tomkivandrii18@gmail.com>
+ * @copyright 2024 tomk1v
+ */
+
+/**
+ * @var $block \Magento\Backend\Block\Template
+ */
+?>
+<script>
+    require([
+        "prototype"
+    ], function () {
+        window.imageExportUrl = '<?= /** @noEscape */ $block->getUrl('images_export/index/export')?>';
+    });
+</script>

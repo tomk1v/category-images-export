@@ -2,10 +2,10 @@
 /**
  * Category Images Export
  *
- * @category  Internship
- * @package   Internship\CategoryImagesExport
- * @author    Andrii Tomkiv <tomkivandrii18@gmail.com>
- * @copyright 2023 tomk1v
+ * @category Internship
+ * @package Internship\CategoryImagesExport
+ * @author Andrii Tomkiv <tomkivandrii18@gmail.com>
+ * @copyright 2024 tomk1v
  */
 
 namespace Internship\CategoryImagesExport\Controller\Adminhtml\Index;
@@ -13,46 +13,40 @@ namespace Internship\CategoryImagesExport\Controller\Adminhtml\Index;
 class Export extends \Magento\Backend\App\Action
 {
     /**
-     * @var \Internship\CategoryImagesExport\Model\DownloadImages
-     */
-    protected $downloadImages;
-
-    /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Internship\CategoryImagesExport\Model\DownloadImages $downloadImages
+     * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Internship\CategoryImagesExport\Model\DownloadImages $downloadImages
+        protected \Magento\Backend\App\Action\Context $context,
+        protected \Internship\CategoryImagesExport\Model\DownloadImages $downloadImages,
+        protected \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
     ) {
         parent::__construct($context);
-        $this->downloadImages = $downloadImages;
     }
 
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Redirect|(\Magento\Framework\Controller\Result\Redirect&\Magento\Framework\Controller\ResultInterface)|\Magento\Framework\Controller\ResultInterface
+     * @return \Magento\Framework\Controller\Result\Json
      */
     public function execute()
     {
-        $resultRedirect = $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT);
-        $formParams = $this->getRequest()->getParams();
+        $resultJson = $this->resultJsonFactory->create();
 
-        if ($formParams && isset($formParams['folder_name']) && $formParams['category_id']) {
-            try {
-                $ifImagesExported = $this->downloadImages
-                    ->execute($formParams['folder_name'], $formParams['category_id']);
+        try {
+            $formParams = $this->getRequest()->getParams();
 
-                if ($ifImagesExported) {
-                    $this->messageManager->addSuccessMessage('Export was successfully.');
-                } else {
-                    $this->messageManager->addErrorMessage('No found products in category for exporting');
-                }
-            } catch (\Exception $e) {
-                $this->messageManager->addErrorMessage('Error exporting photos: ' . $e->getMessage());
+            if ($formParams && isset($formParams['category_id'])) {
+                $zipFileName = $this->downloadImages->execute($formParams['category_id']);
+
+                $this->messageManager->addSuccessMessage('Export was successfully.');
+                return $resultJson->setData(['success' => true, 'message' => 'Export was successful.', 'zipFileName' => $zipFileName]);
+            } else {
+                $this->messageManager->addErrorMessage('Please submit form for category export correctly.');
+                return $resultJson->setData(['success' => false]);
             }
-        } else {
-            $this->messageManager->addErrorMessage('Please submit form for category export correctly.');
+        } catch (\Exception $exception) {
+            $this->messageManager->addErrorMessage('Error exporting photos: ' . $exception->getMessage());
+            return $resultJson->setData(['success' => false]);
         }
-        return $resultRedirect->setPath('images_export/index/index');
     }
 }
