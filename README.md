@@ -1,7 +1,7 @@
-# CategoryImageExport module for Magento2
+# Magento 2 Category Images Export Module
 
 ## Description
-The "Magento 2 Category Image Export" module is a powerful extension for your Magento 2 store, designed to simplify and automate the process of exporting product images from a specific category directly to your local machine. This module streamlines your product image management, making it easier to work with your store's media assets.
+The "Magento 2 Category Image Export" module is a powerful extension for your Magento 2 store, designed to simplify and automate the process of exporting product images from a specific category directly to your pc. This module streamlines your product image management, making it easier to work with your store's media assets.
 
 ### Key Features:
 
@@ -13,20 +13,41 @@ Bulk Export: You can export multiple images at once, ensuring a smooth and effic
 
 User-Friendly Interface: The user interface is intuitive and user-friendly, ensuring that both novice and experienced Magento users can easily navigate the export process.
 
-Local Machine Storage: Exported images are directly saved to your local machine, allowing you to access and use them immediately.
+PC Storage: Exported images are directly saved to your PC, allowing you to access and use them immediately.
+
+Zip Archive: The module bundles all exported images into a zip archive, making it easy for users to download and organize their product images.
 
 Time-Saving: Automating the image export process saves you valuable time, which can be better utilized for other critical tasks in managing your e-commerce store.
 
-### Admin settings by path: System->CategoryImagesExport
-![2023-10-11_17-26](https://github.com/tomk1v/category-images-export/assets/91790934/4f1e6189-6ab1-4026-a570-8536120210bb)
+## Installation
 
-### Enter the name of the folder & category ID, and press the button 'Export'
-![2023-10-11_17-27](https://github.com/tomk1v/category-images-export/assets/91790934/92f6d8a7-9c76-4c5a-ad9b-95fde7048703)
+1. Clone this repository into the app/code directory of your Magento 2 installation: <br/>
+`git clone https://github.com/tomk1v/category-images-export.git`
 
-### Wait for the success message
-![2023-10-11_17-27_1](https://github.com/tomk1v/category-images-export/assets/91790934/fef097db-781e-4379-b59e-72eb6250e7f0)
+2. Run the following commands from the Magento root directory: <br/>
+`bin/magento module:enable Internship_CategoryImagesExport` <br/>
+`bin/magento setup:upgrade` <br/>
+`bin/magento setup:di:compile` <br/>
 
-### Enjoy your photos by path 'pub/media/your_folder_name'
-![2023-10-11_17-29](https://github.com/tomk1v/category-images-export/assets/91790934/ee603b7c-3d87-40a2-8f26-7aa9f939bf37)
+3. Flush the cache: <br/>
+`bin/magento cache:flush`
 
-The module was written for the latest version of Magento 2.4.6 ©tomk1v
+## Usage
+Navigate to Category Images Export in the Magento Admin Panel.
+![2024-02-22_12-10](https://github.com/tomk1v/category-images-export/assets/91790934/a2be9d99-f423-4383-ab9b-4465239847cb)
+
+Select your desired category.
+![2024-02-22_12-14](https://github.com/tomk1v/category-images-export/assets/91790934/54feab81-239c-49ca-9489-23e9ecca1c59)
+
+Click the Export button to download all associated product images in a convenient zip archive.
+![2024-02-22_12-15](https://github.com/tomk1v/category-images-export/assets/91790934/96a38099-190b-4c48-9224-4fab044cdaf0)
+
+Enjoy.
+![2024-02-22_12-19](https://github.com/tomk1v/category-images-export/assets/91790934/7c5bbe35-6743-410d-bab6-a92a87057774)
+
+## Compatibility
+This module is designed to work seamlessly with:
+
+Magento 2.4.6 <br/>
+PHP 8.2 <br/>
+©tomk1v
